@@ -9,6 +9,9 @@ public sealed class GameDefinition
     public required string Name { get; init; }
     public required string Description { get; init; }
     public required string Version { get; init; }
+    public required string Category { get; init; }
+    public required DateOnly LastUpdated { get; init; }
+    public required string Icon { get; init; }
     public required string Engine { get; init; }
     public required string SourcePath { get; init; }
     public string? Executable { get; init; }
@@ -20,6 +23,24 @@ public sealed class GameDefinition
 
     [JsonIgnore]
     public string Initial => string.IsNullOrWhiteSpace(Name) ? "?" : Name[..1].ToUpperInvariant();
+
+    [JsonIgnore]
+    public string LastUpdatedDisplay
+    {
+        get
+        {
+            string[] months =
+            [
+                "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+                "Jul", "Agu", "Sep", "Okt", "Nov", "Des"
+            ];
+
+            return $"{LastUpdated.Day:00} {months[LastUpdated.Month - 1]} {LastUpdated.Year}";
+        }
+    }
+
+    [JsonIgnore]
+    public string VersionAndUpdate => $"v{Version}  •  Update {LastUpdatedDisplay}";
 }
 
 public sealed class PrerequisiteDefinition

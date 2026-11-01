@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\..\manifest\*.json" Link="manifest\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Resource Include="Assets\GameIcons\*.png" />
   </ItemGroup>
 </Project>
 

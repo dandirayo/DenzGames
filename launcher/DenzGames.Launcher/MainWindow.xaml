@@ -46,6 +46,16 @@
                     <TextBlock Text="GAME LIBRARY" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource MutedTextBrush}" Margin="8,4,0,14" />
                     <ListBox x:Name="GameList" Grid.Row="1" Background="Transparent" BorderThickness="0"
                              SelectionChanged="GameList_OnSelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" FontSize="11" FontWeight="SemiBold"
+                                                   Foreground="#8FA0C5" Margin="8,8,0,9" />
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListBox.GroupStyle>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -56,7 +66,7 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="ListBoxItem">
-                                            <Border x:Name="Card" CornerRadius="12" Padding="14" Background="#131F36">
+                                            <Border x:Name="Card" CornerRadius="12" Padding="12" Background="#131F36">
                                                 <ContentPresenter />
                                             </Border>
                                             <ControlTemplate.Triggers>
@@ -76,15 +86,17 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="48" />
+                                        <ColumnDefinition Width="52" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="40" Height="40" CornerRadius="10" Background="#7C5CFC">
-                                        <TextBlock Text="{Binding Initial}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <Border Width="44" Height="44" CornerRadius="10" Background="#7C5CFC">
+                                        <Image Source="{Binding Icon}" Stretch="UniformToFill"
+                                               RenderOptions.BitmapScalingMode="HighQuality" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="15" />
-                                        <TextBlock Text="{Binding Engine}" Foreground="{StaticResource MutedTextBrush}" FontSize="11" Margin="0,3,0,0" />
+                                        <TextBlock Text="{Binding VersionAndUpdate}" Foreground="{StaticResource MutedTextBrush}"
+                                                   FontSize="10.5" Margin="0,4,0,0" />
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
@@ -106,6 +118,7 @@
                     <StackPanel>
                         <TextBlock x:Name="SelectedNameText" Text="Pilih game" FontSize="34" FontWeight="Bold" />
                         <TextBlock x:Name="SelectedMetaText" Foreground="#A99BFF" FontSize="13" Margin="0,8,0,0" />
+                        <TextBlock x:Name="SelectedUpdateText" Foreground="{StaticResource MutedTextBrush}" FontSize="12" Margin="0,6,0,0" />
                     </StackPanel>
                     <TextBlock x:Name="SelectedDescriptionText" Grid.Row="1" TextWrapping="Wrap" FontSize="16"
                                Foreground="#C8D0E7" Margin="0,18,0,0" LineHeight="24" />

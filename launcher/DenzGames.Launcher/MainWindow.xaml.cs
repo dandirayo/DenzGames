@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using DenzGames.Launcher.Models;
 using DenzGames.Launcher.Services;
 
@@ -38,7 +39,9 @@ public partial class MainWindow : Window
                 Games.Add(game);
             }
 
-            GameList.ItemsSource = Games;
+            var groupedGames = CollectionViewSource.GetDefaultView(Games);
+            groupedGames.GroupDescriptions.Add(new PropertyGroupDescription(nameof(GameDefinition.Category)));
+            GameList.ItemsSource = groupedGames;
             PrerequisiteList.ItemsSource = PrerequisiteStatuses;
             LibraryCountText.Text = $"{Games.Count} game dalam library";
             FooterText.Text = $"DenzGames • {catalog.RepositoryRoot}";
@@ -64,7 +67,8 @@ public partial class MainWindow : Window
         }
 
         SelectedNameText.Text = _selectedGame.Name;
-        SelectedMetaText.Text = $"{_selectedGame.Engine}  •  v{_selectedGame.Version}";
+        SelectedMetaText.Text = $"{_selectedGame.Category}  •  {_selectedGame.Engine}  •  v{_selectedGame.Version}";
+        SelectedUpdateText.Text = $"Terakhir diperbarui {_selectedGame.LastUpdatedDisplay}";
         SelectedDescriptionText.Text = _selectedGame.Description;
         await RefreshPrerequisitesAsync();
     }
