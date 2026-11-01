@@ -31,24 +31,29 @@ public sealed class ManifestService
 
     private static string FindRepositoryRoot()
     {
-        foreach (var start in new[] { AppContext.BaseDirectory, Environment.CurrentDirectory })
+        string? packagedRoot = null;
+        foreach (var start in new[] { Environment.CurrentDirectory, AppContext.BaseDirectory })
         {
             var current = new DirectoryInfo(start);
             while (current is not null)
             {
                 if (File.Exists(Path.Combine(current.FullName, "manifest", "games.json")))
                 {
-                    return current.FullName;
+                    if (Directory.Exists(Path.Combine(current.FullName, "games")))
+                    {
+                        return current.FullName;
+                    }
+
+                    packagedRoot ??= current.FullName;
                 }
 
                 current = current.Parent;
             }
         }
 
-        var packagedManifest = Path.Combine(AppContext.BaseDirectory, "manifest", "games.json");
-        if (File.Exists(packagedManifest))
+        if (packagedRoot is not null)
         {
-            return AppContext.BaseDirectory;
+            return packagedRoot;
         }
 
         throw new FileNotFoundException("Folder manifest DenzGames tidak ditemukan.");

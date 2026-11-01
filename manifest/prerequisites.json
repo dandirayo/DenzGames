@@ -8,7 +8,7 @@
       "value": "Installed",
       "expected": "1"
     },
-    "url": "https://aka.ms/vs/17/release/vc_redist.x64.exe"
+    "url": "https://aka.ms/vc14/vc_redist.x64.exe"
   },
   "directx_11": {
     "name": "DirectX 11",
@@ -17,7 +17,7 @@
       "type": "file",
       "path": "%WINDIR%\\System32\\d3d11.dll"
     },
-    "url": "https://support.microsoft.com/windows/which-version-of-directx-is-on-your-pc-3c688307-6c44-2ff5-9df7-d90d92bf5239"
+    "url": "https://support.microsoft.com/en-us/windows/hardware/display-graphics/which-version-of-directx-is-on-your-pc"
   }
 }
 

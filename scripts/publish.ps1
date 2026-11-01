@@ -19,9 +19,10 @@ dotnet publish (Join-Path $repoRoot 'launcher\DenzGames.Launcher\DenzGames.Launc
 if (Test-Path -LiteralPath $zipPath) {
     Remove-Item -LiteralPath $zipPath
 }
-Compress-Archive -LiteralPath (Join-Path $publishRoot '*') -DestinationPath $zipPath
+Compress-Archive -Path (Join-Path $publishRoot '*') -DestinationPath $zipPath
 $hash = Get-FileHash -LiteralPath $zipPath -Algorithm SHA256
 Set-Content -LiteralPath "$zipPath.sha256" -Value ($hash.Hash.ToLowerInvariant() + '  ' + (Split-Path -Leaf $zipPath))
 Write-Host "Created $zipPath"
 Write-Host "SHA256 $($hash.Hash.ToLowerInvariant())"
+
 
