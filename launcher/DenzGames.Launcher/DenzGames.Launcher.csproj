@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>DenzGames.Launcher</AssemblyName>
+    <RootNamespace>DenzGames.Launcher</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\..\manifest\*.json" Link="manifest\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
+
