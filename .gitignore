@@ -6,4 +6,5 @@ artifacts/
 *.suo
 *.tmp
 *.log
+*.lnk
 

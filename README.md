@@ -16,7 +16,9 @@ Setiap folder game diimpor dengan `git subtree`, sehingga riwayat repository asa
 
 ## Menjalankan launcher
 
-Prasyarat pengembangan: Windows 10/11 dan .NET 8 SDK atau lebih baru.
+Cukup double-click file **`DenzGames.bat`** di root folder repository atau shortcut di Desktop untuk langsung membuka launcher tanpa membuka terminal PowerShell.
+
+Jika ingin menjalankan secara manual via CLI/PowerShell:
 
 ```powershell
 dotnet build .\DenzGames.sln
